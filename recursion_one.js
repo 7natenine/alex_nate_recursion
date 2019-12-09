@@ -55,6 +55,86 @@ const recursion = {
     stringSplitter(string.slice(1), split, insert, newArray);
   },
 
+  fibonacci(num) { 
+    if (num === 0){
+      return 0;
+    } 
+    
+    if(num ===1 ){
+      return 1;
+    }
+
+    return fibonacci(num - 1)+fibonacci(num - 2);
+  },
+
+  factorial(num) {
+    if(num==0){
+      return 1;
+    }
+    return num * factorial(num-1);
+  },
+
+  Maze(x,y){
+    let maze = [
+      [' ', ' ', ' ', '*', ' ', ' ', ' '],
+      ['*', '*', ' ', '*', ' ', '*', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', ' '],
+      [' ', '*', '*', '*', '*', '*', ' '],
+      [' ', ' ', ' ', ' ', ' ', ' ', 'e']
+    ];
+
+    if(maze[x][y] == 'e'){
+      return 'Made it out';
+    }
+
+    // if(maze[x+1][y] == ' '){
+    //   console.log('D');
+    //   return 'D' + Maze(x+1,y);
+    // }
+
+    if(maze[x][y+1] == ' '){
+      console.log('R');
+      return 'R' + Maze(x,y+1);
+    }
+
+    // if(maze[x-1][y] == ' '){
+    //   console.log('U');
+    //   return 'U' + Maze(x-1,y);
+    // }
+
+    if(maze[x][y-1] == ' '){
+      console.log('L');
+      return 'L' + Maze(x,y-1);
+    }
+
+  },
+
+  anagrams(string) {
+    let variations = null;
+    let results = [];
+    let a = null; 
+    let b = null;
+
+    if(string.length == 1){
+      results.push(string)
+      return results
+    }
+
+    for(let i = 0; i < string.length; i++) {
+      a = string[i]
+      b = string.substring(0,i) + string.substring (i+1);
+      variations = anagrams(b);
+
+      for(let x = 0; x<variations.lenth; x++){
+        results.push(a+variations[x])
+      }
+      return results
+    }
+
+
+
+  },
+
   binaryRep(num) {
     if(num === 0) {
       return '';
